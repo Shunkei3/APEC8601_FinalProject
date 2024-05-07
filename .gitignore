@@ -6,11 +6,7 @@ images/1c
 doc/*.docx
 doc/*.md
 
-*.Rproj
-.RData
-.Rhistory
-.Rprofile
-.Rproj.user
-.DS_Store
+z_Archive
 
+.DS_Store
 
