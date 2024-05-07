@@ -103,7 +103,7 @@ Data source is shown inside [ ]. `*` indicates the path to the `base_data` folde
 - [x] Biophysical Table [`^/mesh/biophysical_table.csv`]
 - [x] Guide Table [default table]
 
-> [!NOTE] :
+> [!NOTE]
 >
 >For guide table, I used the table attached to the sample data of the InVEST Crop Pollination model. For the biophysical table for the pollination model, I refereed [Koh et al. (2016)](https://www.pnas.org/doi/10.1073/pnas.1517685113) and incorporated their table into my  `^/mesh/biophysical_table.csv`.
 >
@@ -122,6 +122,8 @@ Data source is shown inside [ ]. `*` indicates the path to the `base_data` folde
 - [x] Borselli IC0 Parameter: 0.5
 - [x] Maximum L Value: 122
 
+</br>
+
 **Nutrient Delivery Ratio**
 
 - [x] Digital Elevation Model: [`*/base_data/seals/static_regressors/alt_m.tif`]
@@ -132,18 +134,18 @@ Data source is shown inside [ ]. `*` indicates the path to the `base_data` folde
 - [x] Threshold Flow Accumulation (number of pixels): 1000
 - [x] Borselli K Parameter:2 
 
-> [!NOTE]:
+> [!NOTE]
 >
 >For nutrient runoff proxy, I used annual precipitation data for SLV.
 
 
-# Outputs:
+<!-- # Outputs:
 + WY model: Get estimated water yield per pixel
 + CS model: The map shows the amount of carbon stored in each pixel (Units are metric tons per pixel)
 + CP model: Per-pixel total pollinator abundance across all species during spring season.
 + SDR model: avoided_export.tif  The contribution of vegetation to keeping erosion from entering a stream (units: tons/pixel/year)
 + NDR model: p_surface_export.tif, Total phosphorus loads (sources) in the watershed, i.e. the sum of the nutrient contribution from all surface LULC without filtering by the landscape. [units kg/year]
-
+ -->
 
 
 
