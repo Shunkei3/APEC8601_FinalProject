@@ -1,0 +1,16 @@
+*_files
+
+images/1b
+images/1c
+
+doc/*.docx
+doc/*.md
+
+*.Rproj
+.RData
+.Rhistory
+.Rprofile
+.Rproj.user
+.DS_Store
+
+

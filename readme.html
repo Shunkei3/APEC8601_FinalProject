@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>readme</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="readme_files/libs/clipboard/clipboard.min.js"></script>
+<script src="readme_files/libs/quarto-html/quarto.js"></script>
+<script src="readme_files/libs/quarto-html/popper.min.js"></script>
+<script src="readme_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="readme_files/libs/quarto-html/anchor.min.js"></script>
+<link href="readme_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="readme_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="readme_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="readme_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="readme_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="fianal-project" class="level1">
+<h1>Fianal Project</h1>
+<p>Country: El Salvador (ISO code: “SLV”).</p>
+<p>The final report file is available from [here].</p>
+<p><strong>Objective:</strong></p>
+<p>Below, I explain the steps I took for each question of the final project.</p>
+<section id="component-1" class="level2">
+<h2 class="anchored" data-anchor-id="component-1">Component 1</h2>
+<section id="part-a" class="level3">
+<h3 class="anchored" data-anchor-id="part-a">Part (a):</h3>
+<ol type="1">
+<li>Create a new seals project:</li>
+</ol>
+<ul>
+<li>Open <code>run_test_standard.py</code> file. To create a new project folder, change this line 24 to <code>project_name = "project_slv"</code>. Then run run_test_standard.py using the VS code Debugger. This newly creates <code>project_slv</code> folder under <code>Files/seals/projects</code>.</li>
+</ul>
+<ol start="2" type="1">
+<li>Generate LULC maps for El Salvador for 2030, 2035 and 2040 using SSP1 and SSP3 scenario.</li>
+</ol>
+<ul>
+<li><p>First, download the data for RCP2.6 SSP1 and RCP7.0 SSP3 during the period 2015-2100 from [Hurrt et al.&nbsp;(2020)][https://luh.umd.edu/data.shtml] (or use Johnson/Polasky lab drive in the <code>Johnson-Polasky Lab Drive/earth_economy_data_internal/base_data/luh2/raw_data</code>). Save each of those data in <code>base_data/luh2/raw_data/rcp45_ssp2 and base_data/luh2/raw_data/rcp70_ssp3</code> folder, respectively.</p></li>
+<li><p>Open <code>scenario_definitions.csv</code> file under <code>project_slv/input</code> folder. Then, modify the file as follows:</p>
+<ul>
+<li>Modify <code>aoi</code> column to “SLV”.</li>
+<li>Add new rows for SSP1 and SSP3 scenarios. This can be done simply by copying the row for baseline scenario, and modify the columns of: <code>scenario_label</code>, <code>exogenous_label</code>, <code>climate_label</code>, <code>coarse_projections_input_path</code>, accordingly.</li>
+<li>Modify the Years for the rows of SSP2 and SSP3 to 2030 2035 2040.</li>
+</ul></li>
+</ul>
+<ol start="3" type="1">
+<li>Run <code>run_test_standard.py</code> file.</li>
+</ol>
+<blockquote class="blockquote">
+<p><a href="">!WARNING</a></p>
+<p>Before you run run_test_standard.py with the modified scenario_defenitions.csv , you need to delete all the files/folders inside each folder directly under the folder of project_slv/intermediate (Do not delete any folder directly under project_slv/intermediate ).</p>
+</blockquote>
+</section>
+<section id="part-b" class="level3">
+<h3 class="anchored" data-anchor-id="part-b">Part (b)</h3>
+<p>See <code>org_image.Rmd</code>. This file copies the generated maps in part (a) to the <code>images</code> folder, and make the individual maps across years into a single <code>.png</code> file by SSP scenario.</p>
+</section>
+<section id="part-c" class="level3">
+<h3 class="anchored" data-anchor-id="part-c">Part (c)</h3>
+<p>For this question, I modified the calibration parameters file so that cropland cannot expand into forest.</p>
+<ol type="1">
+<li>Modify <code>default_global_coefficients.csv</code>.</li>
+</ol>
+<ul>
+<li>Open <code>base_data/seals/default_inputs/default_global_coefficients.csv</code>, and change the value in cell E5 to zero.</li>
+</ul>
+<ol start="2" type="1">
+<li>Then, run <code>run_test_standard.py</code> file.</li>
+<li><code>org_image.Rmd</code> create a single <code>.png</code> files for each scenario.</li>
+</ol>
+</section>
+</section>
+<section id="component-2" class="level2">
+<h2 class="anchored" data-anchor-id="component-2">Component 2</h2>
+<section id="preparation-directory-organization" class="level3">
+<h3 class="anchored" data-anchor-id="preparation-directory-organization">Preparation: Directory Organization</h3>
+<ol type="1">
+<li>Create folder called <code>slv_InVEST_out</code> under the <code>Files/base_data</code> folder.</li>
+<li>Under the <code>slv_InVEST_out</code> folder, create two folder: <code>ssp1_rcp26</code> and <code>ssp3_rcp70</code>:
+<ul>
+<li><code>slv_InVEST_out/ssp1_rcp26</code> folder stores InVEST outputs based on SEALs output based on RCP2.6-SSP1 scenario.</li>
+<li><code>slv_InVEST_out/ssp3_rcp70</code> folder stores InVEST outputs based on SEALs output based on RCP7.0-SSP3 scenario.</li>
+</ul></li>
+<li>Then, under <code>slv_InVEST_out/ssp1_rcp26</code>, create the following folders: <code>AnnualWaterYield</code>, <code>CarbonStorage</code>, <code>Pollination</code>, <code>SedimentRetention</code>, <code>e.  NutrientRetention</code>. Repeat this for <code>slv_InVEST_out/ssp1_rcp26</code> folder.</li>
+</ol>
+</section>
+<section id="work-flow" class="level3">
+<h3 class="anchored" data-anchor-id="work-flow">Work Flow</h3>
+<ul>
+<li>Depending on which InVEST model to be run, the required data is different. See below for the input data for each InVEST model. I prepare all input data for InVEST models in <code>prep_InVEST_inputs.R</code>.</li>
+<li>Then, use InVEST software to generate python code to run a model. Then, use that python code to run the model iteratively across different SEALs’ LULC layers (i.e., Given a SSP scenario, run an InVEST model using SEALs’ LULClayers across years. Iterate this for SSP scenarios).
+<ul>
+<li>See python codes named <em>Run[InVESTmodel].ipynb</em> in <code>Run_InVEST_code</code> folder. Each file contains python code that I used to run each InVEST model.</li>
+</ul></li>
+<li>Finally, visualize the results.</li>
+</ul>
+</section>
+<section id="input-data-for-invest-models" class="level3">
+<h3 class="anchored" data-anchor-id="input-data-for-invest-models">Input data for InVEST models</h3>
+<p>Data source is shown inside [ ].</p>
+<p><strong>Annual Water Yield (AWY)</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="">Precipitation (average annual precipitation) [<code>mesh/worldclim</code> (<code>5min/baseline_bio12_Annual_Precipitation.tif</code>)]</label></li>
+<li><label><input type="checkbox" checked="">Evapotranspiration [<code>mesh/cgiar_csi/pet.tif</code>]</label></li>
+<li><label><input type="checkbox" checked="">Root Restricting Layer Depth [<code>mesh/isric/depth_to_root_restricting_layer.tif</code>]</label></li>
+<li><label><input type="checkbox" checked="">Plant Available Water Content [<code>mesh/soil/pawc_30s.tif</code>]</label></li>
+<li><label><input type="checkbox" checked="">Land Use/Land Cover [SEALs’ ouput in part (b) in component 1]</label></li>
+<li><label><input type="checkbox" checked="">Biophysical Table [<code>mesh/esa_and_modis_biophysical_table.csv</code> and <code>base_data/seals/default_inputs/esa_seals7_correspondence.csv</code>]</label></li>
+<li><label><input type="checkbox" checked="">Z Parameter (The seasonality factor) 20</label></li>
+<li><label><input type="checkbox" checked="">Watersheds [<code>mesh/hydrosheds/hydrobasins/hybas_na_lev01-06_v1c/hybas_na_lev06_v1c.shp</code>]</label></li>
+</ul>
+<blockquote class="blockquote">
+<p>[!NOTE] :</p>
+<ol type="1">
+<li>You need to modify some column names in <code>hybas_na_lev06_v1c.shp</code> to make it compatible with InVEST. Specifically, you need to change <code>HYBAS_ID</code> to <code>ws_id</code>.</li>
+<li>Also, you need to merge <code>esa_and_modis_biophysical_table.csv</code> and <code>base_data/seals/default_inputs/esa_seals7_correspondence.csv</code> to get the correct biophysical table. After I combined the two files and make a table so that the lulc codes match with the lulc codes in SEALs’ LULC layer, I saved as the file as <code>mesh/biophysical_table.csv</code>. This <code>mesh/biophysical_table.csv</code> is used as an input of AWY model.</li>
+<li>In <code>esa_seals7_correspondence.csv</code>, <code>lulc_veg</code> is missing for <code>esa</code> column, so you need to define <code>lulc_veg</code> by yourself. Follow the description of <code>lulc_veg</code> in <a href="https://esws.unige.ch/tut_data.html#data-needs">InVEST website</a>.</li>
+</ol>
+</blockquote>
+<blockquote class="blockquote">
+<p>In <code>esa_and_modis_biophysical_table.csv</code>, there are two <code>Kc</code> columns with different value. <code>Kc</code> is a crop coefficient, and this is one of the required inputs to run Annual Water Yield InVEST model. I picked one of the <code>Kc</code> columns. Also, I found duplicated names in the <code>src_lable</code> column in <code>esa_seals7_correspondence.csv</code>. <code>tree_needleleaved_deciduous_closed_to_open_15</code> can be found in row 13 and 16 although <code>src_lable</code> in each row should be unique. I simply disregarded one of those duplicated rows.</p>
+</blockquote>
+<p><strong>Carbon Storage (CS)</strong> model</p>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="">Land Use/Land Cover [SEALs’ ouput in part (b) in component 1]</label></li>
+<li><label><input type="checkbox" checked="">Carbon Pools: [<code>mesh/esa_and_modis_biophysical_table.csv</code> and <code>base_data/seals/default_inputs/esa_seals7_correspondence.csv</code>]</label></li>
+</ul>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
