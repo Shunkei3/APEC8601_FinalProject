@@ -30,10 +30,13 @@ Below, I explain the steps that I took for each question of the final project.
 >
 > Before you run run_test_standard.py with the modified scenario_defenitions.csv , you need to delete all the files/folders inside each folder directly under the folder of project_slv/intermediate (Do not delete any folder  directly under project_slv/intermediate ).
 
+</br>
 
 ### Part (b)
 
 See `org_image.Rmd`. This file copies the generated maps in part (a) to the `images` folder, and make the individual maps across years into a single `.png` file by SSP scenario.
+
+</br>
 
 ### Part (c)
 
@@ -44,6 +47,7 @@ For this question, I modified the calibration parameters file so that cropland c
 2.  Then, run `run_test_standard.py` file.
 3. `org_image.Rmd` create a single `.png` files for each scenario.
 
+</br>
 
 ## Component 2
 
@@ -54,18 +58,17 @@ For this question, I modified the calibration parameters file so that cropland c
 	+ `slv_InVEST_out/ssp3_rcp70` folder stores InVEST outputs based on SEALs output based on RCP7.0-SSP3 scenario.
 3. Then, under `slv_InVEST_out/ssp1_rcp26`, create the following folders: `AnnualWaterYield`, `CarbonStorage`, `CropPollination`, `SedimentRetention`, `e.	NutrientRetention`. Repeat this for `slv_InVEST_out/ssp1_rcp26` folder.
 
-
 ### Work Flow
 1. Depending on which InVEST model to be run, the required data is different. See below for the source of input data I used to run each InVEST model. I processed all input data for InVEST models in `prep_InVEST_inputs.R`. CRSs of all spatial input data were transformed into WGS 84 / UTM zone 16N (EPSG:32616). 
 2. Having prepared all the required data, I used InVEST software to generate python code to run a model. Then, use that python code to run the model iteratively across different SEALs' LULC data.
 	+ See python codes named *Run[InVESTmodel].ipynb* in `Run_InVEST_code` folder. Each file contains python code that I used to run each InVEST model.
 3. Finally, I visualized the InVEST outputs with `plot.R`. 
 
-
 ### Input data for InVEST models
 
 Data source is shown inside [ ]. `*` indicates the path to the `base_data` folder in the Johnson/Polasky lab drive. `^` indicates my `base_data` folder. These data sources are processed for SLV with `prep_InVEST_inputs.R`, and the produced data is used for each InVEST model. Most of the data was obtained from the Johnson/Polasky lab drive. I downloaded the data into my local `Files/base_data` with the same structure as the Johnson/Polasky lab drive. For example, `base_data/mesh/isric/depth_to_root_restricting_layer.tif` in Johnson/Polasky lab drive was download in `Files/base_data/mesh/isric/depth_to_root_restricting_layer.tif` in my local drive.
 
+</br>
 
 **Annual Water Yield (AWY)**
 
@@ -88,6 +91,7 @@ Data source is shown inside [ ]. `*` indicates the path to the `base_data` folde
 > In `esa_and_modis_biophysical_table.csv`, there are two `Kc` columns with different value. `Kc` is a crop coefficient, and this is one of the required inputs to run Annual Water Yield InVEST model. I picked one of the `Kc` columns.
 >Also, I found duplicated names in the `src_lable` column in `esa_seals7_correspondence.csv`. `tree_needleleaved_deciduous_closed_to_open_15` can be found in row 13 and 16 although `src_lable` in each row should be unique. I simply disregarded one of those duplicated rows.
 
+</br>
 
 **Carbon Storage (CS) model**
 
@@ -96,6 +100,8 @@ Data source is shown inside [ ]. `*` indicates the path to the `base_data` folde
 
 <!-- Current LULC: [SEALs' ouput in part (b) in component 1 under base model] -->
 <!-- Future LULC [SEALs' ouput in part (b) in component 1 with different scenarios] -->
+
+</br>
 
 **Crop Pollination (CP) model**
 
@@ -107,6 +113,8 @@ Data source is shown inside [ ]. `*` indicates the path to the `base_data` folde
 >
 >For guide table, I used the table attached to the sample data of the InVEST Crop Pollination model. For the biophysical table for the pollination model, I refereed [Koh et al. (2016)](https://www.pnas.org/doi/10.1073/pnas.1517685113) and incorporated their table into my  `^/mesh/biophysical_table.csv`.
 >
+
+</br>
 
 **Sediment Delivery Ratio model**
 
