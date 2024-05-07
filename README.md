@@ -19,7 +19,7 @@ Below, I explain the steps I took for each question of the final project.
 
 2. Generate LULC maps for El Salvador for 2030, 2035 and 2040 using SSP1 and SSP3 scenario.
 
-+ First, download the data for RCP2.6 SSP1 and RCP7.0 SSP3 during the period 2015-2100 from [Hurrt et al. (2020)][https://luh.umd.edu/data.shtml] (or use Johnson/Polasky lab drive in the `Johnson-Polasky Lab Drive/earth_economy_data_internal/base_data/luh2/raw_data`). Save each of those data in `base_data/luh2/raw_data/rcp45_ssp2 and base_data/luh2/raw_data/rcp70_ssp3` folder, respectively.
++ First, download the data for RCP2.6 SSP1 and RCP7.0 SSP3 during the period 2015-2100 from [Hurrt et al. (2020)](https://luh.umd.edu/data.shtml) (or use Johnson/Polasky lab drive in the `Johnson-Polasky Lab Drive/earth_economy_data_internal/base_data/luh2/raw_data`). Save each of those data in `base_data/luh2/raw_data/rcp45_ssp2 and base_data/luh2/raw_data/rcp70_ssp3` folder, respectively.
 
 + Open `scenario_definitions.csv` file under `project_slv/input` folder. Then, modify the file as follows:
 	- Modify `aoi` column to "SLV".
@@ -128,11 +128,11 @@ Data source is shown inside [ ]. `*` indicates the path to the `base_data` folde
 
 - [x] Digital Elevation Model: [`*/base_data/seals/static_regressors/alt_m.tif`]
 - [x] Land Use/Land Cover [SEALs' ouput in part (b) in component 1 with different scenarios]
-- [ ] Nutrient Runoff Proxy [`*/mesh/worldclim/baseline/5min/baseline_bio12_Annual_Precipitation.tif`]
+- [x] Nutrient Runoff Proxy [`*/mesh/worldclim/baseline/5min/baseline_bio12_Annual_Precipitation.tif`]
 - [x] Watersheds [`*/mesh/hydrosheds/hydrobasins/hybas_na_lev01-06_v1c/hybas_na_lev06_v1c.shp`]
 - [x] Biophysical Table [`^/mesh/biophysical_table.csv`]
-- [ ] Threshold Flow Accumulation (number of pixels): 1000
-- [ ] Borselli K Parameter:2 
+- [x] Threshold Flow Accumulation (number of pixels): 1000
+- [x] Borselli K Parameter:2 
 
 >[!NOTE]:
 >
