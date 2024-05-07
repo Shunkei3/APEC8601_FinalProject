@@ -2,20 +2,18 @@
 
 This is a repository for the final assignment for APEC8601 2024 Spring. 
 
-Country: El Salvador (ISO code: "SLV").
+**Country**: El Salvador (ISO code: "SLV").
 
-The final report file is available from [here].
+The final report for the project is available from [here](https://shunkei3.github.io/final_assignment//doc/final_project.html).
 
-**Objective:**
-
-Below, I explain the steps I took for each question of the final project.
+Below, I explain the steps that I took for each question of the final project.
 
 ## Component 1
 
 ### Part (a):
 
 1. Create a new seals project:
-+ Open `run_test_standard.py` file. To create a new project folder,  change this line 24 to `project_name = "project_slv"`. Then run run_test_standard.py using the VS code Debugger. This newly creates `project_slv` folder under `Files/seals/projects`.
++ Open `run_test_standard.py` file. To create a new project folder,  change this line 24 to `project_name = "project_slv"`. Then run `run_test_standard.py` using the VS code Debugger. This newly creates `project_slv` folder under `Files/seals/projects`.
 
 2. Generate LULC maps for El Salvador for 2030, 2035 and 2040 using SSP1 and SSP3 scenario.
 
@@ -80,13 +78,13 @@ Data source is shown inside [ ]. `*` indicates the path to the `base_data` folde
 - [x] Z Parameter (The seasonality factor): 20
 - [x] Watersheds [`*/mesh/hydrosheds/hydrobasins/hybas_na_lev01-06_v1c/hybas_na_lev06_v1c.shp`]
 
->[!NOTE] :
+> [!NOTE] :
 >
 >(1) You need to modify some column names in `hybas_na_lev06_v1c.shp` to make it compatible with InVEST. Specifically, you need to change ` HYBAS_ID` to `ws_id`.
 >(2) For the biophysical table, I combined `*/mesh/esa_and_modis_biophysical_table.csv` and `^/seals/default_inputs/esa_seals7_correspondence.csv` to create `^/mesh/biophysical_table.csv`. Specifically, I merged the two `.csv` files using lulc code, and aggregated the values in  `esa_and_modis_biophysical_table.csv` of by SEALs LULC category. The code to create `biophysical_table.csv` is included in `prep_InVEST_inputs.R`. 
 > (3) In `esa_seals7_correspondence.csv`, `lulc_veg` is missing for `esa` column, so you need to define `lulc_veg` by yourself. Follow the description of `lulc_veg` in [InVEST website](https://esws.unige.ch/tut_data.html#data-needs).
 
->[!WARNING]:
+> [!WARNING]:
 > In `esa_and_modis_biophysical_table.csv`, there are two `Kc` columns with different value. `Kc` is a crop coefficient, and this is one of the required inputs to run Annual Water Yield InVEST model. I picked one of the `Kc` columns.
 >Also, I found duplicated names in the `src_lable` column in `esa_seals7_correspondence.csv`. `tree_needleleaved_deciduous_closed_to_open_15` can be found in row 13 and 16 although `src_lable` in each row should be unique. I simply disregarded one of those duplicated rows.
 
@@ -105,7 +103,7 @@ Data source is shown inside [ ]. `*` indicates the path to the `base_data` folde
 - [x] Biophysical Table [`^/mesh/biophysical_table.csv`]
 - [x] Guide Table [default table]
 
->[!NOTE] :
+> [!NOTE] :
 >
 >For guide table, I used the table attached to the sample data of the InVEST Crop Pollination model. For the biophysical table for the pollination model, I refereed [Koh et al. (2016)](https://www.pnas.org/doi/10.1073/pnas.1517685113) and incorporated their table into my  `^/mesh/biophysical_table.csv`.
 >
@@ -134,7 +132,7 @@ Data source is shown inside [ ]. `*` indicates the path to the `base_data` folde
 - [x] Threshold Flow Accumulation (number of pixels): 1000
 - [x] Borselli K Parameter:2 
 
->[!NOTE]:
+> [!NOTE]:
 >
 >For nutrient runoff proxy, I used annual precipitation data for SLV.
 
