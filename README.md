@@ -116,7 +116,7 @@ Data source is shown inside [ ]. `*` indicates the path to the `base_data` folde
 
 </br>
 
-**Sediment Delivery Ratio model**
+**Sediment Delivery Ratio (SDR) model**
 
 - [x] Digital Elevation Model: [`*/base_data/static_regressors/alt_m.tif`]
 - [x] Erosivity: [Downloaded from Inter-American Development Bank - SLV ([here](https://github.com/Open-IEEM/IEEM-ES-SLV/))]
@@ -132,7 +132,7 @@ Data source is shown inside [ ]. `*` indicates the path to the `base_data` folde
 
 </br>
 
-**Nutrient Delivery Ratio**
+**Nutrient Delivery Ratio (NDR) model**
 
 - [x] Digital Elevation Model: [`*/base_data/seals/static_regressors/alt_m.tif`]
 - [x] Land Use/Land Cover [SEALs' ouput in part (b) in component 1 with different scenarios]

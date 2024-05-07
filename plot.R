@@ -37,6 +37,8 @@ fig_theme <-
 # /*===========================================*/
 #'= Annual Water Yield =
 # /*===========================================*/
+library(viridis)
+
 folder_wy <- "AnnualWaterYield"
 inter_path_tif_wy <- "output/per_pixel/wyield.tif"
 suffix_image_file <- "wy"
@@ -55,11 +57,10 @@ for(ssp_name in ls_ssps){
 	map <-
 		ggplot() +
   		geom_spatraster(data = rasters)+
-  		facet_wrap(~lyr, ncol = 2) +
-  		scale_fill_gradientn(
-  			colours = rev(terrain.colors(225)),
+  		facet_wrap(~lyr, ncol = 1) +
+  		scale_fill_viridis(
   			name = "Water yield per pixel"
-  		) +
+  			) + 
   		theme_void()
   		
   	ggsave(
@@ -89,11 +90,14 @@ for(ssp_name in ls_ssps){
 	map <-
 		ggplot() +
   		geom_spatraster(data = rasters)+
-  		facet_wrap(~lyr, ncol = 2) +
-  		scale_fill_gradientn(
-  			colours = rev(terrain.colors(225)),
+  		facet_wrap(~lyr, ncol = 1) +
+ 		scale_fill_viridis(
   			name = "Carbon storage per pixel \n metric tons per pixel"
   		) +
+  		# scale_fill_gradientn(
+  		# 	colours = rev(terrain.colors(500)),
+  		# 	name = "Carbon storage per pixel \n metric tons per pixel"
+  		# ) +
   		theme_void()
   		
   	ggsave(
@@ -126,11 +130,14 @@ for(ssp_name in ls_ssps){
 	map <-
 		ggplot() +
   		geom_spatraster(data = rasters)+
-  		facet_wrap(~lyr, ncol = 2) +
-  		scale_fill_gradientn(
-  			colours = rev(terrain.colors(225)),
+  		facet_wrap(~lyr, ncol = 1) +
+  		scale_fill_viridis(
   			name = "Per-pixel total \n pollinator abundance"
   		) +
+  		# scale_fill_gradientn(
+  		# 	colours = rev(terrain.colors(225)),
+  		# 	name = "Per-pixel total \n pollinator abundance"
+  		# ) +
   		theme_void()
   		
   	ggsave(
@@ -163,11 +170,14 @@ for(ssp_name in ls_ssps){
 	map <-
 		ggplot() +
   		geom_spatraster(data = rasters)+
-  		facet_wrap(~lyr, ncol = 2) +
-  		scale_fill_gradientn(
-  			colours = rev(terrain.colors(225)),
+  		facet_wrap(~lyr, ncol = 1) +
+  		scale_fill_viridis(
   			name = "The amount of phosphorus \n loads in the stream (kg/pixel/year)"
   		) +
+  		# scale_fill_gradientn(
+  		# 	colours = rev(terrain.colors(225)),
+  		# 	name = "The amount of phosphorus \n loads in the stream (kg/pixel/year)"
+  		# ) +
   		theme_void()
   		
   	ggsave(
@@ -197,18 +207,62 @@ for(ssp_name in ls_ssps){
 	rasters[rasters==0] <- NA
 
 	# === make a plot  === #
-	map <-
-		ggplot() +
-  		geom_spatraster(data = rasters)+
-  		facet_wrap(~lyr, ncol = 2) +
-  		scale_fill_gradientn(
-  			colours = rev(terrain.colors(225)),
-  			name = "Per-pixel avoided erosion \n into a stream (tons/pixel/year)"
-  		) +
-  		theme_void()
-
-  	ggsave(
+	map <- 
+		tm_shape(rasters) +
+    	tm_raster(
+    		style = "fisher",
+    		title = "Per-pixel avoided erosion \n into a stream (tons/pixel/year)"
+    	)+ 
+    	tm_layout(
+    		main.title = str_replace(ssp_name, "_", "-"),
+	 		# legend.position = c("right", "top"),
+	 		aes.palette = list(seq = "YlOrBr"),
+	 		main.title.size = 1,
+	 		legend.outside = TRUE ,
+	 		# legend.outside.position = "bottom",
+	 		frame = TRUE
+  		)
+  	
+  	tmap_save(
+  		map, 
   		here(path_out_plot_base, paste0(suffix_image_file, "_", ssp_name, ".png"))
   	)
 }
+
+# folder_sdr <- "SedimentRetention"
+# inter_path_tif_sdr <- "avoided_export.tif"
+# suffix_image_file <- "sdr"
+
+# for(ssp_name in ls_ssps){
+# 	# ssp_name = ls_ssps[[1]]
+# 	path_folder <- 
+# 		paste0(here(path_InVEST_out, ssp_name, folder_sdr))
+
+# 	ls_path_out <- 
+# 		paste0(
+# 			here(path_folder, paste0("y",ls_years), inter_path_tif_sdr)
+# 		)
+
+# 	rasters <- rast(ls_path_out)
+# 	names(rasters) <- ls_years
+# 	rasters[rasters==0] <- NA
+
+# 	# === make a plot  === #
+# 	map <-
+# 		ggplot() +
+#   		geom_spatraster(data = rasters)+
+#   		facet_wrap(~lyr, ncol = 1) +
+#   		scale_fill_viridis(
+#   			name = "Per-pixel avoided erosion \n into a stream (tons/pixel/year)"
+#   		) + 
+#   		# scale_fill_gradientn(
+#   		# 	colours = rev(terrain.colors(225)),
+#   		# 	name = "Per-pixel avoided erosion \n into a stream (tons/pixel/year)"
+#   		# ) +
+#   		theme_void()
+
+#   	ggsave(
+#   		here(path_out_plot_base, paste0(suffix_image_file, "_", ssp_name, ".png"))
+#   	)
+# }
 
