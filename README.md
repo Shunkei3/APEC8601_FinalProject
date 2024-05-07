@@ -4,7 +4,7 @@ This is a repository for the final assignment for APEC8601 2024 Spring.
 
 **Country**: El Salvador (ISO code: "SLV").
 
-The final report for the project is available from [here](https://shunkei3.github.io/final_assignment//doc/final_project.html).
+The final report for the project is available from [here](https://shunkei3.github.io/final_assignment/doc/final_project.html).
 
 Below, I explain the steps that I took for each question of the final project.
 
