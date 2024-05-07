@@ -4,6 +4,7 @@ library(tidyverse)
 library(stringr)
 library(tidyterra)
 library(terra)
+library(rasterVis)
 # === read images === #
 library(gridExtra)
 library(png)
@@ -23,6 +24,16 @@ ls_ssps <- c("ssp1_rcp26", "ssp3_rcp70")
 
 file_path <- system.file("extdata/cyl_temp.tif", package = "tidyterra")
 
+
+fig_theme <- 
+	theme(
+    	plot.title = element_text(hjust = 0.5),
+    	axis.text.x = element_blank(),
+    	axis.text.y = element_blank(),
+    	axis.ticks = element_blank(),
+    	rect = element_blank()
+  	)
+
 # /*===========================================*/
 #'= Annual Water Yield =
 # /*===========================================*/
@@ -41,24 +52,17 @@ for(ssp_name in ls_ssps){
 	names(rasters) <- ls_years
 	rasters[rasters==0] <- NA
 
-	# === make a plot  === #
-	map <- 
-		tm_shape(rasters) +
-    	tm_raster(
-    		style = "cont",
-    		title = "Water yield per pixel"
-    	)+ 
-    	tm_layout(
-    		main.title = str_replace(ssp_name, "_", "-"),
-	 		aes.palette = list(seq = "-RdYlGn"),
-	 		main.title.size = 1,
-	 		legend.outside = TRUE ,
-	 		# legend.outside.position = "bottom",
-	 		frame = TRUE
-  		)
-  	
-  	tmap_save(
-  		map, 
+	map <-
+		ggplot() +
+  		geom_spatraster(data = rasters)+
+  		facet_wrap(~lyr, ncol = 2) +
+  		scale_fill_gradientn(
+  			colours = rev(terrain.colors(225)),
+  			name = "Water yield per pixel"
+  		) +
+  		theme_void()
+  		
+  	ggsave(
   		here(path_out_plot_base, paste0(suffix_image_file, "_", ssp_name, ".png"))
   	)
 }
@@ -82,25 +86,17 @@ for(ssp_name in ls_ssps){
 	rasters[rasters==0] <- NA
 
 	# === make a plot  === #
-	map <- 
-		tm_shape(rasters) +
-    	tm_raster(
-    		style = "fisher",
-    		title = "Carbon storage per pixel \n metric tons per pixel"
-    	)+ 
-    	tm_layout(
-    		main.title = str_replace(ssp_name, "_", "-"),
-    		# main.title.size = 2,
-	 		# legend.position = c("right", "top"),
-	 		aes.palette = list(seq = "YlOrBr"),
-	 		main.title.size = 1,
-	 		legend.outside = TRUE ,
-	 		# legend.outside.position = "bottom",
-	 		frame = TRUE
-  		)
-  	
-  	tmap_save(
-  		map, 
+	map <-
+		ggplot() +
+  		geom_spatraster(data = rasters)+
+  		facet_wrap(~lyr, ncol = 2) +
+  		scale_fill_gradientn(
+  			colours = rev(terrain.colors(225)),
+  			name = "Carbon storage per pixel \n metric tons per pixel"
+  		) +
+  		theme_void()
+  		
+  	ggsave(
   		here(path_out_plot_base, paste0(suffix_image_file, "_", ssp_name, ".png"))
   	)
 }
@@ -127,24 +123,17 @@ for(ssp_name in ls_ssps){
 	rasters[rasters==0] <- NA
 
 	# === make a plot  === #
-	map <- 
-		tm_shape(rasters) +
-    	tm_raster(
-    		style = "cont",
-    		title = "Per-pixel total \n pollinator abundance"
-    	)+ 
-    	tm_layout(
-    		main.title = str_replace(ssp_name, "_", "-"),
-	 		# legend.position = c("right", "top"),
-	 		aes.palette = list(seq = "YlOrBr"),
-	 		main.title.size = 1,
-	 		legend.outside = TRUE ,
-	 		# legend.outside.position = "bottom",
-	 		frame = TRUE
-  		)
-  	
-  	tmap_save(
-  		map, 
+	map <-
+		ggplot() +
+  		geom_spatraster(data = rasters)+
+  		facet_wrap(~lyr, ncol = 2) +
+  		scale_fill_gradientn(
+  			colours = rev(terrain.colors(225)),
+  			name = "Per-pixel total \n pollinator abundance"
+  		) +
+  		theme_void()
+  		
+  	ggsave(
   		here(path_out_plot_base, paste0(suffix_image_file, "_", ssp_name, ".png"))
   	)
 }
@@ -170,25 +159,18 @@ for(ssp_name in ls_ssps){
 	names(rasters) <- ls_years
 	rasters[rasters==0] <- NA
 
-	# === make a plot  === #
-	map <- 
-		tm_shape(rasters) +
-    	tm_raster(
-    		style = "cont",
-    		title = "The amount of phosphorus \n loads in the stream (kg/pixel/year)"
-    	)+ 
-    	tm_layout(
-    		main.title = str_replace(ssp_name, "_", "-"),
-	 		# legend.position = c("right", "top"),
-	 		aes.palette = list(seq = "YlOrBr"),
-	 		main.title.size = 1,
-	 		legend.outside = TRUE ,
-	 		# legend.outside.position = "bottom",
-	 		frame = TRUE
-  		)
-  	
-  	tmap_save(
-  		map, 
+	# === make a plot === #
+	map <-
+		ggplot() +
+  		geom_spatraster(data = rasters)+
+  		facet_wrap(~lyr, ncol = 2) +
+  		scale_fill_gradientn(
+  			colours = rev(terrain.colors(225)),
+  			name = "The amount of phosphorus \n loads in the stream (kg/pixel/year)"
+  		) +
+  		theme_void()
+  		
+  	ggsave(
   		here(path_out_plot_base, paste0(suffix_image_file, "_", ssp_name, ".png"))
   	)
 }
@@ -215,24 +197,17 @@ for(ssp_name in ls_ssps){
 	rasters[rasters==0] <- NA
 
 	# === make a plot  === #
-	map <- 
-		tm_shape(rasters) +
-    	tm_raster(
-    		style = "fisher",
-    		title = "Per-pixel avoided erosion \n into a stream (tons/pixel/year)"
-    	)+ 
-    	tm_layout(
-    		main.title = str_replace(ssp_name, "_", "-"),
-	 		# legend.position = c("right", "top"),
-	 		aes.palette = list(seq = "YlOrBr"),
-	 		main.title.size = 1,
-	 		legend.outside = TRUE ,
-	 		# legend.outside.position = "bottom",
-	 		frame = TRUE
-  		)
-  	
-  	tmap_save(
-  		map, 
+	map <-
+		ggplot() +
+  		geom_spatraster(data = rasters)+
+  		facet_wrap(~lyr, ncol = 2) +
+  		scale_fill_gradientn(
+  			colours = rev(terrain.colors(225)),
+  			name = "Per-pixel avoided erosion \n into a stream (tons/pixel/year)"
+  		) +
+  		theme_void()
+
+  	ggsave(
   		here(path_out_plot_base, paste0(suffix_image_file, "_", ssp_name, ".png"))
   	)
 }
