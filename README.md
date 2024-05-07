@@ -78,13 +78,13 @@ Data source is shown inside [ ]. `*` indicates the path to the `base_data` folde
 - [x] Z Parameter (The seasonality factor): 20
 - [x] Watersheds [`*/mesh/hydrosheds/hydrobasins/hybas_na_lev01-06_v1c/hybas_na_lev06_v1c.shp`]
 
-> [!NOTE] :
+> [!NOTE]
 >
 >(1) You need to modify some column names in `hybas_na_lev06_v1c.shp` to make it compatible with InVEST. Specifically, you need to change ` HYBAS_ID` to `ws_id`.
 >(2) For the biophysical table, I combined `*/mesh/esa_and_modis_biophysical_table.csv` and `^/seals/default_inputs/esa_seals7_correspondence.csv` to create `^/mesh/biophysical_table.csv`. Specifically, I merged the two `.csv` files using lulc code, and aggregated the values in  `esa_and_modis_biophysical_table.csv` of by SEALs LULC category. The code to create `biophysical_table.csv` is included in `prep_InVEST_inputs.R`. 
 > (3) In `esa_seals7_correspondence.csv`, `lulc_veg` is missing for `esa` column, so you need to define `lulc_veg` by yourself. Follow the description of `lulc_veg` in [InVEST website](https://esws.unige.ch/tut_data.html#data-needs).
 
-> [!WARNING]:
+> [!WARNING]
 > In `esa_and_modis_biophysical_table.csv`, there are two `Kc` columns with different value. `Kc` is a crop coefficient, and this is one of the required inputs to run Annual Water Yield InVEST model. I picked one of the `Kc` columns.
 >Also, I found duplicated names in the `src_lable` column in `esa_seals7_correspondence.csv`. `tree_needleleaved_deciduous_closed_to_open_15` can be found in row 13 and 16 although `src_lable` in each row should be unique. I simply disregarded one of those duplicated rows.
 
