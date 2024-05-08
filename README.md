@@ -4,8 +4,14 @@ This is a repository for the final assignment for APEC8601 2024 Spring.
 
 **Country**: El Salvador (ISO code: "SLV").
 
-
 **The final report for the project is available from** [**here**](https://shunkei3.github.io/final_assignment/doc/final_project.html).
+
+**Summary Report**
+
+In the case of El Salvador, a significant change in ecosystem services cannot be confirmed during the period 2030-2040 in each SSP scenario. One reason for this is that the time period (10 years) I used in this analysis was too short to see a significant land-use change. This implies that a policymaker should not expect a policy to affect their ecosystem services instantly; rather, it takes a long time to see results. Another reason why I could not see any changes in ecosystem services in El Salvador might be that the assumed policy in this analysis is linked to ecosystem services. Given the distinct socio-economic conditions by country, a policymaker should not expect that a policy that positively impacted ecosystem services in another nation has a similar effect on their country. A deep understanding of their county's unique mechanism of ecosystem services is required to achieve green economic development.
+
+</br>
+
 
 Below, I explain the steps that I took for each question of the final project.
 
