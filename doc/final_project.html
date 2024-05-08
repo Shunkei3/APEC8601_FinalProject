@@ -100,30 +100,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv2</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-6" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Image_base <span class="op">=</span> cv2.imread(<span class="st">'../images/1b_out/out_base.png'</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Image_ssp1 <span class="op">=</span> cv2.imread(<span class="st">'../images/1b_out/out_ssp1.png'</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Image_ssp3 <span class="op">=</span> cv2.imread(<span class="st">'../images/1b_out/out_ssp3.png'</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>Image_base <span class="op">=</span> cv2.cvtColor(Image_base, cv2.COLOR_BGR2RGB)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>Image_ssp1 <span class="op">=</span> cv2.cvtColor(Image_ssp1, cv2.COLOR_BGR2RGB)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>Image_ssp3 <span class="op">=</span> cv2.cvtColor(Image_ssp3, cv2.COLOR_BGR2RGB)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># # === Base map === #</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize <span class="op">=</span> (<span class="dv">10</span>,<span class="dv">30</span>))</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>plt.imshow(Image_base)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># # === SSP1 === #</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize <span class="op">=</span> (<span class="dv">15</span>,<span class="dv">30</span>))</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>plt.imshow(Image_ssp1)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># # === SSP3 === #</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize <span class="op">=</span> (<span class="dv">15</span>,<span class="dv">30</span>))</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>plt.imshow(Image_ssp3)</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="base" class="level2">
+<h2 class="anchored" data-anchor-id="base">Base</h2>
+<p><img style="float: center;" src="https://shunkei3.github.io/final_assignment/images/1b_out/out_base.png" width="800" height="500"></p>
+</section>
+<section id="ssp1-scenario" class="level2">
+<h2 class="anchored" data-anchor-id="ssp1-scenario">SSP1 scenario</h2>
+<p><img style="float: center;" src="https://shunkei3.github.io/final_assignment/images/1b_out/out_ssp1.png" width="1300" height="1000"></p>
+</section>
+<section id="ssp3-scenario" class="level2">
+<h2 class="anchored" data-anchor-id="ssp3-scenario">SSP3 scenario</h2>
+<p><img style="float: center;" src="https://shunkei3.github.io/final_assignment/images/1b_out/out_ssp3.png" width="1300" height="1000"></p>
+<ol start="3" type="a">
+<li>Add a new “policy” layer that prevents/encourages certain types of land-use change in certain areas. For instance, you could modify the calibration parameters file to decrease the likelihood that agricultural expansion happens on steep slopes.</li>
+</ol>
+<p><font color="red"><strong>Answer:</strong></font></p>
+<div id="cell-9" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Image_ssp1 <span class="op">=</span> cv2.imread(<span class="st">'../images/1c_out/out_ssp1.png'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Image_ssp3 <span class="op">=</span> cv2.imread(<span class="st">'../images/1c_out/out_ssp3.png'</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>Image_ssp1 <span class="op">=</span> cv2.cvtColor(Image_ssp1, cv2.COLOR_BGR2RGB)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>Image_ssp3 <span class="op">=</span> cv2.cvtColor(Image_ssp3, cv2.COLOR_BGR2RGB)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># # === SSP1 === #</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize <span class="op">=</span> (<span class="dv">15</span>,<span class="dv">30</span>))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>plt.imshow(Image_ssp1)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># # === SSP3 === #</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize <span class="op">=</span> (<span class="dv">15</span>,<span class="dv">30</span>))</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>plt.imshow(Image_ssp3)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -135,49 +144,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div>
 <figure class="figure">
 <p><img src="final_project_files/figure-html/cell-3-output-2.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="final_project_files/figure-html/cell-3-output-3.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<ol start="3" type="a">
-<li>Add a new “policy” layer that prevents/encourages certain types of land-use change in certain areas. For instance, you could modify the calibration parameters file to decrease the likelihood that agricultural expansion happens on steep slopes.</li>
-</ol>
-<p><font color="red"><strong>Answer:</strong></font></p>
-<div id="cell-9" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Image_ssp1 <span class="op">=</span> cv2.imread(<span class="st">'../images/1c_out/out_ssp1.png'</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Image_ssp3 <span class="op">=</span> cv2.imread(<span class="st">'../images/1c_out/out_ssp3.png'</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>Image_ssp1 <span class="op">=</span> cv2.cvtColor(Image_ssp1, cv2.COLOR_BGR2RGB)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>Image_ssp3 <span class="op">=</span> cv2.cvtColor(Image_ssp3, cv2.COLOR_BGR2RGB)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># # === SSP1 === #</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize <span class="op">=</span> (<span class="dv">15</span>,<span class="dv">30</span>))</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.imshow(Image_ssp1)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># # === SSP3 === #</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize <span class="op">=</span> (<span class="dv">15</span>,<span class="dv">30</span>))</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>plt.imshow(Image_ssp3)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="final_project_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="final_project_files/figure-html/cell-4-output-2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -207,56 +173,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="a.-carbon-storage" class="level2">
 <h2 class="anchored" data-anchor-id="a.-carbon-storage">a. Carbon Storage</h2>
-<section id="ssp1-scenario" class="level3">
-<h3 class="anchored" data-anchor-id="ssp1-scenario">SSP1 scenario</h3>
+<section id="ssp1-scenario-1" class="level3">
+<h3 class="anchored" data-anchor-id="ssp1-scenario-1">SSP1 scenario</h3>
 <p><img src="https://shunkei3.github.io/final_assignment/images/slv_InVEST_out/cs_ssp1_rcp26.png" width="1000" height="1000"></p>
 </section>
-<section id="ssp3-scenario" class="level3">
-<h3 class="anchored" data-anchor-id="ssp3-scenario">SSP3 scenario</h3>
+<section id="ssp3-scenario-1" class="level3">
+<h3 class="anchored" data-anchor-id="ssp3-scenario-1">SSP3 scenario</h3>
 <p><img src="https://shunkei3.github.io/final_assignment/images/slv_InVEST_out/cs_ssp3_rcp70.png" width="1000" height="1000"></p>
 </section>
 </section>
 <section id="b.-water-yield" class="level2">
 <h2 class="anchored" data-anchor-id="b.-water-yield">b. Water Yield</h2>
-<section id="ssp1-scenario-1" class="level3">
-<h3 class="anchored" data-anchor-id="ssp1-scenario-1">SSP1 scenario</h3>
+<section id="ssp1-scenario-2" class="level3">
+<h3 class="anchored" data-anchor-id="ssp1-scenario-2">SSP1 scenario</h3>
 <p><img src="https://shunkei3.github.io/final_assignment/images/slv_InVEST_out/wy_ssp1_rcp26.png" width="1000" height="1000"></p>
 </section>
-<section id="ssp3-scenario-1" class="level3">
-<h3 class="anchored" data-anchor-id="ssp3-scenario-1">SSP3 scenario</h3>
+<section id="ssp3-scenario-2" class="level3">
+<h3 class="anchored" data-anchor-id="ssp3-scenario-2">SSP3 scenario</h3>
 <p><img src="https://shunkei3.github.io/final_assignment/images/slv_InVEST_out/wy_ssp3_rcp70.png" width="1000" height="1000"></p>
 </section>
 </section>
 <section id="c.-pollination" class="level2">
 <h2 class="anchored" data-anchor-id="c.-pollination">c.&nbsp;Pollination</h2>
-<section id="ssp1-scenario-2" class="level3">
-<h3 class="anchored" data-anchor-id="ssp1-scenario-2">SSP1 scenario</h3>
+<section id="ssp1-scenario-3" class="level3">
+<h3 class="anchored" data-anchor-id="ssp1-scenario-3">SSP1 scenario</h3>
 <p><img src="https://shunkei3.github.io/final_assignment/images/slv_InVEST_out/cp_ssp1_rcp26.png" width="1000" height="1000"></p>
 </section>
-<section id="ssp3-scenario-2" class="level3">
-<h3 class="anchored" data-anchor-id="ssp3-scenario-2">SSP3 scenario</h3>
+<section id="ssp3-scenario-3" class="level3">
+<h3 class="anchored" data-anchor-id="ssp3-scenario-3">SSP3 scenario</h3>
 <p><img src="https://shunkei3.github.io/final_assignment/images/slv_InVEST_out/cp_ssp3_rcp70.png" width="1000" height="1000"></p>
 </section>
 </section>
 <section id="d.-sediment-retention" class="level2">
 <h2 class="anchored" data-anchor-id="d.-sediment-retention">d.&nbsp;Sediment retention</h2>
-<section id="ssp1-scenario-3" class="level3">
-<h3 class="anchored" data-anchor-id="ssp1-scenario-3">SSP1 scenario</h3>
+<section id="ssp1-scenario-4" class="level3">
+<h3 class="anchored" data-anchor-id="ssp1-scenario-4">SSP1 scenario</h3>
 <p><img src="https://shunkei3.github.io/final_assignment/images/slv_InVEST_out/sdr_ssp1_rcp26.png" width="800" height="1200"></p>
 </section>
-<section id="ssp3-scenario-3" class="level3">
-<h3 class="anchored" data-anchor-id="ssp3-scenario-3">SSP3 scenario</h3>
+<section id="ssp3-scenario-4" class="level3">
+<h3 class="anchored" data-anchor-id="ssp3-scenario-4">SSP3 scenario</h3>
 <p><img src="https://shunkei3.github.io/final_assignment/images/slv_InVEST_out/sdr_ssp3_rcp70.png" width="800" height="1200"></p>
 </section>
 </section>
 <section id="e.-nutrient-retention" class="level2">
 <h2 class="anchored" data-anchor-id="e.-nutrient-retention">e. Nutrient retention</h2>
-<section id="ssp1-scenario-4" class="level3">
-<h3 class="anchored" data-anchor-id="ssp1-scenario-4">SSP1 scenario</h3>
+<section id="ssp1-scenario-5" class="level3">
+<h3 class="anchored" data-anchor-id="ssp1-scenario-5">SSP1 scenario</h3>
 <p><img src="https://shunkei3.github.io/final_assignment/images/slv_InVEST_out/ndr_ssp1_rcp26.png" width="1000" height="1000"></p>
 </section>
-<section id="ssp3-scenario-4" class="level3">
-<h3 class="anchored" data-anchor-id="ssp3-scenario-4">SSP3 scenario</h3>
+<section id="ssp3-scenario-5" class="level3">
+<h3 class="anchored" data-anchor-id="ssp3-scenario-5">SSP3 scenario</h3>
 <p><img src="https://shunkei3.github.io/final_assignment/images/slv_InVEST_out/ndr_ssp3_rcp70.png" width="1000" height="1000"></p>
 <ol start="3" type="a">
 <li>Write a narrative description of how the different scenarios differ in terms of which ecosystem services see localized increases/decreases</li>
