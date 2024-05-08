@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -93,13 +59,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Plot these maps using QGIS or whatever plotting method you like.</li>
 </ol>
 <p><font color="red"><strong>Answer:</strong></font></p>
-<div id="cell-5" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> argparse</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv2</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="base" class="level2">
 <h2 class="anchored" data-anchor-id="base">Base</h2>
@@ -116,45 +75,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Add a new “policy” layer that prevents/encourages certain types of land-use change in certain areas. For instance, you could modify the calibration parameters file to decrease the likelihood that agricultural expansion happens on steep slopes.</li>
 </ol>
 <p><font color="red"><strong>Answer:</strong></font></p>
-<div id="cell-9" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Image_ssp1 <span class="op">=</span> cv2.imread(<span class="st">'../images/1c_out/out_ssp1.png'</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Image_ssp3 <span class="op">=</span> cv2.imread(<span class="st">'../images/1c_out/out_ssp3.png'</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>Image_ssp1 <span class="op">=</span> cv2.cvtColor(Image_ssp1, cv2.COLOR_BGR2RGB)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>Image_ssp3 <span class="op">=</span> cv2.cvtColor(Image_ssp3, cv2.COLOR_BGR2RGB)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># # === SSP1 === #</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize <span class="op">=</span> (<span class="dv">15</span>,<span class="dv">30</span>))</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>plt.imshow(Image_ssp1)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># # === SSP3 === #</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize <span class="op">=</span> (<span class="dv">15</span>,<span class="dv">30</span>))</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>plt.imshow(Image_ssp3)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="final_project_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="final_project_files/figure-html/cell-3-output-2.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
+</section>
+<section id="ssp1-scenario-1" class="level2">
+<h2 class="anchored" data-anchor-id="ssp1-scenario-1">SSP1 scenario</h2>
+<p><img style="float: center;" src="https://shunkei3.github.io/final_assignment/images/1c_out/out_ssp1.png" width="1300" height="1000"></p>
+</section>
+<section id="ssp3-scenario-1" class="level2">
+<h2 class="anchored" data-anchor-id="ssp3-scenario-1">SSP3 scenario</h2>
+<p><img style="float: center;" src="https://shunkei3.github.io/final_assignment/images/1c_out/out_ssp3.png" width="1300" height="1000"></p>
 <ol start="4" type="a">
 <li>Write a narrative description of how the different scenarios differ in terms of what classes expand/contract and where.</li>
 </ol>
 <p><font color="red"><strong>Answer:</strong></font></p>
 <p>Looking at the base map, agricultural land is dominated in southern coastal regions. Under SSP1 scenario, which assumes the strong environmental conservation and comprehensive development to enhance people’s welfare happen, those coastal agricultural regions are servery shrunk, and natural forest are recovered.</p>
-<p>SSP3 scenario assumes very opposite sociao-economic pathway. Specifically, it assumes that regional competitiveness over resources increases and peopel’s socioeconomic status decreases. Under this scenario, the forest areas decreases and progressive expansion of cropland can be seen around the urban areas located in the western region of the country.</p>
-<p>In both scenarios, after modifying the calibration parameter so that the expansion of cropland is not allowed into forest, significant amount of cropland is reduced relative to the results before the modification. This is especially the case for SSP3 scenario.</p>
+<p>The SSP3 scenario assumes a very opposite socioeconomic pathway. Specifically, it assumes that regional competitiveness over resources increases and people’s socioeconomic status decreases. Under this scenario, the forest areas decrease, and progressive expansion of cropland can be seen around the urban areas located in the western region of the country.</p>
+<p>In both scenarios, after modifying the calibration parameter so that cropland expansion is not allowed into the forest, a significant amount of cropland is reduced relative to the results before the modification. This is especially the case for the SSP3 scenario.</p>
 </section>
 <section id="component-2" class="level2">
 <h2 class="anchored" data-anchor-id="component-2">Component 2:</h2>
@@ -173,56 +108,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="a.-carbon-storage" class="level2">
 <h2 class="anchored" data-anchor-id="a.-carbon-storage">a. Carbon Storage</h2>
-<section id="ssp1-scenario-1" class="level3">
-<h3 class="anchored" data-anchor-id="ssp1-scenario-1">SSP1 scenario</h3>
+<section id="ssp1-scenario-2" class="level3">
+<h3 class="anchored" data-anchor-id="ssp1-scenario-2">SSP1 scenario</h3>
 <p><img src="https://shunkei3.github.io/final_assignment/images/slv_InVEST_out/cs_ssp1_rcp26.png" width="1000" height="1000"></p>
 </section>
-<section id="ssp3-scenario-1" class="level3">
-<h3 class="anchored" data-anchor-id="ssp3-scenario-1">SSP3 scenario</h3>
+<section id="ssp3-scenario-2" class="level3">
+<h3 class="anchored" data-anchor-id="ssp3-scenario-2">SSP3 scenario</h3>
 <p><img src="https://shunkei3.github.io/final_assignment/images/slv_InVEST_out/cs_ssp3_rcp70.png" width="1000" height="1000"></p>
 </section>
 </section>
 <section id="b.-water-yield" class="level2">
 <h2 class="anchored" data-anchor-id="b.-water-yield">b. Water Yield</h2>
-<section id="ssp1-scenario-2" class="level3">
-<h3 class="anchored" data-anchor-id="ssp1-scenario-2">SSP1 scenario</h3>
+<section id="ssp1-scenario-3" class="level3">
+<h3 class="anchored" data-anchor-id="ssp1-scenario-3">SSP1 scenario</h3>
 <p><img src="https://shunkei3.github.io/final_assignment/images/slv_InVEST_out/wy_ssp1_rcp26.png" width="1000" height="1000"></p>
 </section>
-<section id="ssp3-scenario-2" class="level3">
-<h3 class="anchored" data-anchor-id="ssp3-scenario-2">SSP3 scenario</h3>
+<section id="ssp3-scenario-3" class="level3">
+<h3 class="anchored" data-anchor-id="ssp3-scenario-3">SSP3 scenario</h3>
 <p><img src="https://shunkei3.github.io/final_assignment/images/slv_InVEST_out/wy_ssp3_rcp70.png" width="1000" height="1000"></p>
 </section>
 </section>
 <section id="c.-pollination" class="level2">
 <h2 class="anchored" data-anchor-id="c.-pollination">c.&nbsp;Pollination</h2>
-<section id="ssp1-scenario-3" class="level3">
-<h3 class="anchored" data-anchor-id="ssp1-scenario-3">SSP1 scenario</h3>
+<section id="ssp1-scenario-4" class="level3">
+<h3 class="anchored" data-anchor-id="ssp1-scenario-4">SSP1 scenario</h3>
 <p><img src="https://shunkei3.github.io/final_assignment/images/slv_InVEST_out/cp_ssp1_rcp26.png" width="1000" height="1000"></p>
 </section>
-<section id="ssp3-scenario-3" class="level3">
-<h3 class="anchored" data-anchor-id="ssp3-scenario-3">SSP3 scenario</h3>
+<section id="ssp3-scenario-4" class="level3">
+<h3 class="anchored" data-anchor-id="ssp3-scenario-4">SSP3 scenario</h3>
 <p><img src="https://shunkei3.github.io/final_assignment/images/slv_InVEST_out/cp_ssp3_rcp70.png" width="1000" height="1000"></p>
 </section>
 </section>
 <section id="d.-sediment-retention" class="level2">
 <h2 class="anchored" data-anchor-id="d.-sediment-retention">d.&nbsp;Sediment retention</h2>
-<section id="ssp1-scenario-4" class="level3">
-<h3 class="anchored" data-anchor-id="ssp1-scenario-4">SSP1 scenario</h3>
+<section id="ssp1-scenario-5" class="level3">
+<h3 class="anchored" data-anchor-id="ssp1-scenario-5">SSP1 scenario</h3>
 <p><img src="https://shunkei3.github.io/final_assignment/images/slv_InVEST_out/sdr_ssp1_rcp26.png" width="800" height="1200"></p>
 </section>
-<section id="ssp3-scenario-4" class="level3">
-<h3 class="anchored" data-anchor-id="ssp3-scenario-4">SSP3 scenario</h3>
+<section id="ssp3-scenario-5" class="level3">
+<h3 class="anchored" data-anchor-id="ssp3-scenario-5">SSP3 scenario</h3>
 <p><img src="https://shunkei3.github.io/final_assignment/images/slv_InVEST_out/sdr_ssp3_rcp70.png" width="800" height="1200"></p>
 </section>
 </section>
 <section id="e.-nutrient-retention" class="level2">
 <h2 class="anchored" data-anchor-id="e.-nutrient-retention">e. Nutrient retention</h2>
-<section id="ssp1-scenario-5" class="level3">
-<h3 class="anchored" data-anchor-id="ssp1-scenario-5">SSP1 scenario</h3>
+<section id="ssp1-scenario-6" class="level3">
+<h3 class="anchored" data-anchor-id="ssp1-scenario-6">SSP1 scenario</h3>
 <p><img src="https://shunkei3.github.io/final_assignment/images/slv_InVEST_out/ndr_ssp1_rcp26.png" width="1000" height="1000"></p>
 </section>
-<section id="ssp3-scenario-5" class="level3">
-<h3 class="anchored" data-anchor-id="ssp3-scenario-5">SSP3 scenario</h3>
+<section id="ssp3-scenario-6" class="level3">
+<h3 class="anchored" data-anchor-id="ssp3-scenario-6">SSP3 scenario</h3>
 <p><img src="https://shunkei3.github.io/final_assignment/images/slv_InVEST_out/ndr_ssp3_rcp70.png" width="1000" height="1000"></p>
 <ol start="3" type="a">
 <li>Write a narrative description of how the different scenarios differ in terms of which ecosystem services see localized increases/decreases</li>
