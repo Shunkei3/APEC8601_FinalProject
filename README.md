@@ -1,4 +1,4 @@
-# SPEC8601 Final Assignment
+# APEC8601 Final Assignment
 
 This is a repository for the final assignment for APEC8601 2024 Spring. 
 
